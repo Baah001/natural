@@ -1,0 +1,29 @@
+<input type="file" (change)="fileChange($event)" placeholder="Upload file" accept=".pdf,.doc,.docx,.txt">
+
+<div class="row">
+  <div class="col-xs-6">
+    <div *ngFor="let item of userText; let i = index"
+         [ngClass]="{'panel-warning': searchResults[i] > 0 && searchResults[i] < 1,
+                       'panel-danger': searchResults[i] === 0,
+                       'panel-success': searchResults[i] > 1}"
+         class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">{{ i + 1 }}</h3>
+      </div>
+      <div class="panel-body">
+        {{ item }}
+      </div>
+    </div>
+  </div>
+
+
+  <div class="col-xs-4">
+    <label for="inputHelpBlock">Enter your search query:</label>
+    <input #userInput type="text" id="inputHelpBlock" class="form-control" aria-describedby="helpBlock">
+    <button (click)="onFilter(userInput)" class="btn btn-default">Filter!</button>
+    <span id="helpBlock" class="help-block">Filter most important text blocks using: Natural TFIDF</span>
+
+  </div>
+  <div class="col-xs-2"></div>
+</div>
+

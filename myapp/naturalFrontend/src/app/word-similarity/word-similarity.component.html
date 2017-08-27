@@ -1,0 +1,86 @@
+<div *ngIf="similarity">
+  <div tabindex="0" (keydown)="onClearScreen($event)">
+    <div class="row">
+      <div class="col-xs-6">
+        <form [formGroup]="wordSimilarityForm">
+          <label>Time to be creative, start typying your poem/rap lyrics: </label>
+          <input (keyup)="onSubmit($event, setBaseWord)" type="text" class="form-control">
+          <hr/>
+          <label>Set new baseword</label>
+          <input formControlName="setBaseWord" type="checkbox">
+
+          <hr/>
+          <label for="jaroWinkler">Serach with: JaroWinkler</label>
+          <input id="jaroWinkler" formControlName="jaroWinkler" type="checkbox">
+
+        </form>
+        <hr/>
+      </div>
+      <div class="col-xs-4"></div>
+      <div class="col-xs-2"></div>
+    </div>
+
+
+    <div class="row">
+      <div class="col-xs-6">
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <p *ngFor="let sentence of myPoem">{{ sentence }}</p>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="col-xs-4">
+
+      </div>
+      <div class="col-xs-2"></div>
+    </div>
+
+    <div *ngIf="soundAlikeResult !== undefined" class="row">
+      <div class="col-xs-6">
+        <p [ngClass]="{'bg-danger': !soundAlikeResult.result, 'bg-success': soundAlikeResult.result }"
+           class="col-xs-6 r">
+          {{ baseword }}: {{ soundAlikeResult.baseWordResult }}
+        </p>
+
+        <p [ngClass]="{'bg-danger': !soundAlikeResult.result, 'bg-success': soundAlikeResult.result }" class="col-xs-6">
+          {{ word }}: {{ soundAlikeResult.wordResult }}
+        </p>
+      </div>
+
+      <div class="col-xs-4"></div>
+      <div class="col-xs-4"></div>
+    </div>
+  </div>
+</div>
+
+<app-natural-speach *ngIf="!similarity">
+  <h1>Natural Speech</h1>
+  <div tabindex="0" (keydown)="onClearScreen($event)">
+    <div class="row">
+      <div class="col-xs-6">
+        <form [formGroup]="wordSimilarityForm">
+          <label>Time to be creative, start typying your poem/rap lyrics: </label>
+          <input (keyup)="onEnter($event, setBaseWord)" type="text" class="form-control">
+        </form>
+        <hr/>
+      </div>
+      <div class="col-xs-4"></div>
+      <div class="col-xs-2"></div>
+    </div>
+
+    <div class="row">
+      <div class="col-xs-6">
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <p *ngFor="let sentence of myPoem">{{ sentence }}</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-xs-4"></div>
+      <div class="col-xs-2"></div>
+    </div>
+  </div>
+</app-natural-speach>
+
