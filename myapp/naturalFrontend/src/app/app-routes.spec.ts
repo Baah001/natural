@@ -2,9 +2,9 @@ import { approutes } from './app-routes';
 import { IntroComponent } from './intro/intro.component';
 
 
-fdescribe('routes', () => {
+describe('routes', () => {
 
-  fit('should contain a rout for', () => {
+  it('should contain a rout for', () => {
 
     expect(approutes).toContain({path: 'home', component: IntroComponent})
 
