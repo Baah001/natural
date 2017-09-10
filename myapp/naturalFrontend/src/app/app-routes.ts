@@ -12,22 +12,19 @@ import {NaturalSpeachComponent} from './natural-speech/natural-speach.component'
 import {PresentationComponent} from './presentation/presentation.component';
 import {MythsComponent} from './presentation/myths/myths.component';
 import {MachineLearningLibComponent} from './presentation/machine-learning-lib/machine-learning-lib.component';
-import { TestComponentComponent } from './test-component/test-component.component';
+
 
 // services
 import {WordSimilarityService} from './services/word-similarity.service';
 import {SwitchContextService} from './services/switch-context.service';
 import {NavigationService} from './presentation/navigation.service';
 import {SentenceFilterResolverService} from './sentence-filter/sentence-filter-resolver.service';
-import { TestResolverService } from './test-component/test-resolver.service';
+
 
 export const approutes = [
   {path: 'home', component: IntroComponent},
   {path: 'sentences', component: SentenceFilterComponent, resolve: {staticArticle: SentenceFilterResolverService}},
   {path: 'upload', component: UploadComponent},
-  {path: 'test', component: TestComponentComponent, resolve: {
-      testData: TestResolverService
-  }},
   {path: 'word-similarity', component: WordSimilarityComponent},
   {path: 'presentation', component: PresentationComponent, children: [
     {path: 'myths', component: MythsComponent},
