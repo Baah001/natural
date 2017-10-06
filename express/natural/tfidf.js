@@ -1,6 +1,6 @@
 let natural = require('natural');
 let tfidf = new natural.TfIdf();
-let trainingData = require('./trainingData/tfidf.trainingData');
+let trainingData = require('./trainingData/tfidf.trainingData.js');
 
 /** Despite the fact that tfidf sounds silly, it is actually an abbreviation for `term frequency–inverse document frequency`,
  *  a metric to help us find important words in text data. Natural does this by multiplying

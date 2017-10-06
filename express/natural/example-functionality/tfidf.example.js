@@ -1,6 +1,6 @@
 let natural = require('natural');
 let tfidf = new natural.TfIdf();
-let trainingData = require('../trainingData/tfidf.trainingData');
+let trainingData = require('../trainingData/tfidf.trainingData.js');
 
 /**Term frequency: how often a particular words is used within one item of text
 Inverse Document Frequency: Math.log(10/(1 + number of documents that contained the search query));

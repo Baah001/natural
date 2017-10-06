@@ -4,10 +4,9 @@ const favicon = require('serve-favicon');
 const logger = require('morgan');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
-const sorry = 5;
 const index = require('./routes/index');
 const users = require('./routes/users');
-
+const soRandom = 8;
 const app = express();
 
 // view engine setup
