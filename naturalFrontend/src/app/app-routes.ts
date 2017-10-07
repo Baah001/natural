@@ -51,15 +51,13 @@ export const approutes = [
     NaturalSpeachComponent,
     PresentationComponent,
     MythsComponent,
-    MachineLearningLibComponent,
-    TestComponentComponent
+    MachineLearningLibComponent
   ],
   providers: [
     SentenceFilterResolverService,
     WordSimilarityService,
     SwitchContextService,
-    NavigationService,
-    TestResolverService
+    NavigationService
   ],
   exports: [RouterModule]
 

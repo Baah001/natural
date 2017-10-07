@@ -22,8 +22,10 @@
     "@angular/router": "^4.0.0",
     "@ng-bootstrap/ng-bootstrap": "^1.0.0-alpha.30",
     "@types/jquery": "^2.0.48",
+    "@types/lodash": "^4.14.77",
     "core-js": "^2.4.1",
     "jquery": "^2.2.4",
+    "lodash": "^4.17.4",
     "rxjs": "^5.1.0",
     "zone.js": "^0.8.4"
   },

@@ -1,6 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {HttpService} from '../services/http.service';
+import {Observable, BehaviorSubject, Subscription} from "rxjs";
+import * as _ from 'lodash';
 
 @Component({
   selector: 'app-sentence-filter',
@@ -8,39 +10,40 @@ import {HttpService} from '../services/http.service';
   styleUrls: ['./sentence-filter.component.css']
 })
 export class SentenceFilterComponent implements OnInit {
-  article: string[];
-  searchResults = [];
+  article$: Observable<string[]>;
+  searchResults: string[] = [];
+  resultSubscription: Subscription;
 
-  constructor(private route: ActivatedRoute, private httpService: HttpService) {}
+  constructor(private route: ActivatedRoute, private httpService: HttpService) {
+  }
 
   ngOnInit() {
-    this.route.data
-      .subscribe(
-        (response) => {
-          this.article = response['staticArticle']['article'];
-        },
-        (error) => {
-          console.log(error);
-        }
-      );
+    this.getRouteData();
+
   }
 
   onFilter(userInput: HTMLInputElement) {
-    this.httpService.getNaturalDynamic('/natural/statictext/', userInput.value)
+    this.resultSubscription = this.httpService.getNaturalDynamic('/natural/statictext/', userInput.value)
       .subscribe(
-        (response) => {
-          this.searchResults = [];
-          for (let item in response) {
-            if (response.hasOwnProperty(item)) {
-              this.searchResults.push(response[item]);
+        (result: string[]) => {
+          for (let item in result) {
+            if (result.hasOwnProperty(item)) {
+              this.searchResults.push(result[item]);
             }
           }
+          console.log(this.searchResults);
         },
-        (error) => {
-          console.log(error);
-        }
-      );
+        console.error
+      )
+
+  }
+
+  private getRouteData() {
+    this.article$ = this.route.data
+      .first()
+      .map(data => data['staticArticle']['article'])
+      .publishLast().refCount();
+
+
   }
 }
-
-
